@@ -1,45 +1,49 @@
+import java.util.ArrayList;
+
 public class Player {
 
-    Hand hand; //No reason for this to be private as hand already has the restrictions from the Hand class
-    private double money; //Planning on putting money on user instead and using player for both dealer and user
+    ArrayList<Hand> hands = new ArrayList<>(); //No reason for this to be private as hand already has the restrictions from the Hand class
+     //Planning on putting money on user instead and using player for both dealer and user
 
     //constructor 1
     public Player(){
         //This is what is run when it is extended
-        this.money = 0;
-    }
-    //constructor 2
-    public Player(long money) {
-        setMoney(money);
+
     }
 
     //getters
-    public double getMoney(){
-        return this.money;
-    }
-    public Hand getHand(){
-        return this.hand;
+
+    public ArrayList<Hand> getHand(){
+        return this.hands;
     }
 
     //setters
-    public void setMoney(double money) {
-        if (money > 0) {
-            this.money = money;
-        }else{
-            throw new IllegalArgumentException("Money can't be negative");
-        }
-    }
-    public void setHand(Hand hand){
-        this.hand = hand;
+
+    public void setHand(Hand hand, int handNum){
+        this.hands.set(handNum, hand);
     }
 
+    public void addHand(Hand hand){
+        this.hands.add(hand);
+    }
+
+    //drawCard
+
     public void drawCard(Deck deck){
-        hand.drawCard(deck);
+        hands.get(0).drawCard(deck);
+        //Draw a card from the deck
+    }
+    public void drawCard(Deck deck, int handNum){
+        hands.get(handNum).drawCard(deck);
         //Draw a card from the deck
     }
 
     public void drawCard(Deck deck, boolean show){
-        hand.drawCard(deck,show);
+        hands.get(0).drawCard(deck,show);
+        //Draw a card from the deck
+    }
+    public void drawCard(Deck deck, boolean show, int handNum){
+        hands.get(handNum).drawCard(deck,show);
         //Draw a card from the deck
     }
 }
