@@ -67,8 +67,10 @@ public class PlayingCard {
     }
 
     // set methods
-    public void setShow(boolean b) {
+
+    public PlayingCard setShow(boolean b) {
         this.show = b;
+        return this;
     }
 
 }
