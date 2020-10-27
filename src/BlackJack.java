@@ -3,6 +3,8 @@ public class BlackJack {
         Deck playingDeck = new Deck();
         User user = new User(100);
 
+
+
         /*Game flow
         1. Choose how much to bet
         2. 1 card to player

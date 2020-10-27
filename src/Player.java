@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Player {
 
     ArrayList<Hand> hands = new ArrayList<>(); //No reason for this to be private as hand already has the restrictions from the Hand class
-     //Planning on putting money on user instead and using player for both dealer and user
 
     //constructor 1
     public Player(){
