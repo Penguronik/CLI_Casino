@@ -1,7 +1,7 @@
 public class Player {
 
-    Hand hand;
-    double money;
+    Hand hand; //No reason for this to be private as hand already has the restrictions from the Hand class
+    private double money;
 
     //constructor 1
     public Player(){
@@ -28,7 +28,6 @@ public class Player {
         }else{
             throw new NegativeMoneyException();
         }
-
     }
     public void setHand(Hand hand){
         this.hand = hand;
