@@ -39,11 +39,7 @@ public class Player {
     }
 
     public void drawCard(Deck deck, boolean show){
-        if (show){
-            hand.drawCard(deck, true);
-        }else{
-            hand.drawCard(deck);
-        }
+        hand.drawCard(deck,show);
         //Draw a card from the deck
     }
 }

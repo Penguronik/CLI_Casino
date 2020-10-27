@@ -11,7 +11,7 @@ public class Hand {
     }
 
     public void drawCard(Deck deck, boolean show){
-        addCard(deck.drawCard().setShow(true));
+        addCard(deck.drawCard().setShow(show));
         //Use addCard()
         //Draw one card from deck
     }
