@@ -1,7 +1,7 @@
 public class PlayingCard {
 
     int cardValue, suitValue;
-    String suitSymbol, valueString;
+    String suitSymbol, cardValueString;
 
     // constructor 1 - takes 2 ints
     public PlayingCard(int v, int s) throws InvalidCardValueException {
@@ -14,19 +14,19 @@ public class PlayingCard {
             this.cardValue = v;
             switch (this.cardValue) {
                 case (1):
-                    this.valueString = "A";
+                    this.cardValueString = "A";
                     break;
                 case (11):
-                    this.valueString = "J";
+                    this.cardValueString = "J";
                     break;
                 case(12):
-                    this.valueString = "Q";
+                    this.cardValueString = "Q";
                     break;
                 case(13):
-                    this.valueString = "K";
+                    this.cardValueString = "K";
                     break;
                 default:
-                    this.valueString = Integer.toString(this.cardValue);
+                    this.cardValueString = Integer.toString(this.cardValue);
                     break;
             }
         }
@@ -68,19 +68,19 @@ public class PlayingCard {
             this.cardValue = v;
             switch (this.cardValue) {
                 case (1):
-                    this.valueString = "A";
+                    this.cardValueString = "A";
                     break;
                 case (11):
-                    this.valueString = "J";
+                    this.cardValueString = "J";
                     break;
                 case(12):
-                    this.valueString = "Q";
+                    this.cardValueString = "Q";
                     break;
                 case(13):
-                    this.valueString = "K";
+                    this.cardValueString = "K";
                     break;
                 default:
-                    this.valueString = Integer.toString(this.cardValue);
+                    this.cardValueString = Integer.toString(this.cardValue);
                     break;
             }
         }
