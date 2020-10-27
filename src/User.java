@@ -7,12 +7,7 @@ public class User extends Player{
         this.setMoney(money);
     }
 
-    public boolean lostCheck(int handNum) {
-        if (hands.get(handNum).getTotal()>21 && !hands.get(handNum).contains(1)){
-            return true;
-        }// Figure out a place where Ace is checked for and stuff math
-        return false;
-    }
+
 
     //getters
     public double getMoney(){

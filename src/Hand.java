@@ -17,6 +17,10 @@ public class Hand {
     }
 
     public int getTotal(){
+        return 0;//Make this return the total of the list (Aces counted as 1)
+    }
+
+    public int getTotal(boolean checkAces){
         return 0;//Make this return the total of the list (Aces counted as 11
     }
 
@@ -31,6 +35,13 @@ public class Hand {
     public boolean contains(int v, int s) throws InvalidCardValueException {
         PlayingCard card = new PlayingCard(v, s);
         return true; //Return true if the array contains the given card, if .equals or something doesn't work ask Noam about it
+    }
+
+    public boolean lostCheck() {
+        if (this.getTotal(true)>21){
+            return true;
+        }// Figure out a place where Ace is checked for and stuff math
+        return false;
     }
 
 }
