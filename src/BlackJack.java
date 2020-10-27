@@ -1,4 +1,4 @@
-public class Main {
+public class BlackJack {
     public static void main(String[] args) throws InvalidCardValueException {
         Deck playingDeck = new Deck();
         User user = new User(100);
