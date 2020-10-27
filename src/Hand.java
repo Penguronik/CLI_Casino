@@ -37,7 +37,7 @@ public class Hand {
         return true; //Return true if the array contains the given card, if .equals or something doesn't work ask Noam about it
     }
 
-    public boolean lostCheck() {
+    public boolean checkBust() {
         if (this.getTotal(true)>21){
             return true;
         }// Figure out a place where Ace is checked for and stuff math

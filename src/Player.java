@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-    ArrayList<Hand> hands = new ArrayList<>(); //No reason for this to be private as hand already has the restrictions from the Hand class
+    private ArrayList<Hand> hands = new ArrayList<>(); //No reason for this to be private as hand already has the restrictions from the Hand class
 
     //constructor 1
     public Player(){
@@ -12,11 +12,21 @@ public class Player {
 
     //getters
 
-    public ArrayList<Hand> getHand(){
-        return this.hands;
+    public Hand getHand(){
+        return this.hands.get(0);
     }
 
+    public Hand getHand(int handNum){
+        return this.hands.get(handNum);
+    }
+
+    public ArrayList<Hand> getHands(){return this.hands;}
+
     //setters
+
+    public void setHand(Hand hand){
+        this.hands.set(0, hand);
+    }
 
     public void setHand(Hand hand, int handNum){
         this.hands.set(handNum, hand);
@@ -26,7 +36,15 @@ public class Player {
         this.hands.add(hand);
     }
 
-    //drawCard
+    public void clearHand(){
+        this.hands.clear();
+    }
+
+    public void clearHand(int handNum){
+        this.hands.remove(handNum);
+    }
+
+    //
 
     public void drawCard(Deck deck){
         hands.get(0).drawCard(deck);
@@ -44,5 +62,9 @@ public class Player {
     public void drawCard(Deck deck, boolean show, int handNum){
         hands.get(handNum).drawCard(deck,show);
         //Draw a card from the deck
+    }
+
+    public boolean checkBust(int handNum){
+        return hands.get(handNum).checkBust();
     }
 }

@@ -14,6 +14,8 @@ public class User extends Player{
         return this.balance;
     }
 
+    public double getBet(){return this.bet;}
+
     //setters
     public void setBalance(double balance) {
         if (balance > 0) {
