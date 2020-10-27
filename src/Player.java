@@ -1,15 +1,34 @@
 public class Player {
 
     Hand hand;
-    private long money;
+    double money;
 
     //constructor 1
     public Player(){
+        //This is what is run when it is extended
         this.money = 0;
     }
     //constructor 2
     public Player(long money){
         this.money = money;
+    }
+
+    //getters
+    public double getMoney(){
+        return this.money;
+    }
+    public Hand getHand(){
+        return this.hand;
+    }
+
+    //setters
+    public void setMoney(double money) throws NegativeMoneyException {
+        if (money > 0) {
+            this.money = money;
+        }else{
+            throw new NegativeMoneyException();
+        }
+
     }
 
     public void drawCard(Deck deck){
