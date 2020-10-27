@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class Deck {
-    private ArrayList<PlayingCard> deck = new ArrayList<>();
+    private Stack<PlayingCard> deck = new Stack<>();
 
     public Deck() throws InvalidCardValueException {
         for (int i = 1; i < 14; i++) {
@@ -25,5 +26,9 @@ public class Deck {
 
     public void shuffle(){
         Collections.shuffle(deck);
+    }
+
+    public PlayingCard drawCard(){
+        return deck.pop();
     }
 }
