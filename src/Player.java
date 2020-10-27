@@ -7,6 +7,7 @@ public class Player {
     public Player(){
         this.money = 0;
     }
+    //constructor 2
     public Player(long money){
         this.money = money;
     }
