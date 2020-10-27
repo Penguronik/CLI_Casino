@@ -10,6 +10,12 @@ public class Hand {
         //Draw one card from deck
     }
 
+    public void drawCard(Deck deck, boolean show){
+        addCard(deck.drawCard().setShow(true));
+        //Use addCard()
+        //Draw one card from deck
+    }
+
     public int getTotal(){
         return 0;//Make this return the total of the list (Aces counted as 11
     }
