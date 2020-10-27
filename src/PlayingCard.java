@@ -1,7 +1,9 @@
 public class PlayingCard {
 
-    private int cardValue, suitValue;
-    private String suitSymbol, cardValueString;
+    private final int cardValue;
+    private final int suitValue;
+    private final String suitSymbol;
+    private final String cardValueString;
 
     // constructor 1 - takes 2 ints
     public PlayingCard(int v, int s) throws InvalidCardValueException {
