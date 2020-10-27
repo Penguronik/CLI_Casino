@@ -2,8 +2,11 @@ public class PlayingCard {
 
     private final int cardValue;
     private final int suitValue;
+
     private final String suitSymbol;
     private final String cardValueString;
+
+    private boolean show = false;
 
     // constructor 1 - takes 2 ints
     public PlayingCard(int v, int s) throws InvalidCardValueException {
@@ -61,6 +64,11 @@ public class PlayingCard {
 
     public String toString() {
         return suitValue + suitSymbol;
+    }
+
+    // set methods
+    public void setShow(boolean b) {
+        this.show = b;
     }
 
 }

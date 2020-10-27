@@ -25,12 +25,12 @@ public class Hand {
     }
     public boolean contains(int v) {
         return true; //Return true if the array contains the given card,
-        // if .equals or smthng doesnt work ask Noam about it
+        // if .equals or something doesn't work ask Noam about it
         // Also ask Noam to check if a number exists in a deck without being given the suit
     }
     public boolean contains(int v, int s) throws InvalidCardValueException {
         PlayingCard card = new PlayingCard(v, s);
-        return true; //Return true if the array contains the given card, if .equals or smthng doesnt work ask Noam about it
+        return true; //Return true if the array contains the given card, if .equals or something doesn't work ask Noam about it
     }
 
 }
