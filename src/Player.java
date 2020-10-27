@@ -9,8 +9,8 @@ public class Player {
         this.money = 0;
     }
     //constructor 2
-    public Player(long money){
-        this.money = money;
+    public Player(long money) throws NegativeMoneyException {
+        setMoney(money);
     }
 
     //getters
@@ -29,6 +29,9 @@ public class Player {
             throw new NegativeMoneyException();
         }
 
+    }
+    public void setHand(Hand hand){
+        this.hand = hand;
     }
 
     public void drawCard(Deck deck){
