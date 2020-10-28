@@ -59,7 +59,7 @@ public class Player {
         hands.get(0).drawCard(deck,show);
         //Draw a card from the deck
     }
-    public void drawCard(Deck deck, boolean show, int handNum){
+    public void drawCard(Deck deck, int handNum, boolean show){
         hands.get(handNum).drawCard(deck,show);
         //Draw a card from the deck
     }
