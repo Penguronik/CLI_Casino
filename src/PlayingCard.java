@@ -1,6 +1,6 @@
 public class PlayingCard {
 
-    private final int cardValue;
+    private int cardValue;
     private final int suitValue;
 
     private final String suitSymbol;
@@ -8,7 +8,7 @@ public class PlayingCard {
 
     private boolean show = false;
 
-    // constructor 1 - takes 2 ints
+    // constructor 1 - for blackjack values
     public PlayingCard(int v, int s) throws InvalidCardValueException {
 
         // setting value & valueString
@@ -16,21 +16,25 @@ public class PlayingCard {
             throw new InvalidCardValueException();
         }
         else {
-            this.cardValue = v;
-            switch (this.cardValue) {
+            switch (v) {
                 case (1):
                     this.cardValueString = "A";
+                    this.cardValue = 1;
                     break;
                 case (11):
                     this.cardValueString = "J";
+                    this.cardValue = 10;
                     break;
                 case(12):
                     this.cardValueString = "Q";
+                    this.cardValue = 10;
                     break;
                 case(13):
                     this.cardValueString = "K";
+                    this.cardValue = 10;
                     break;
                 default:
+                    this.cardValue = v;
                     this.cardValueString = Integer.toString(this.cardValue);
                     break;
             }
@@ -62,15 +66,22 @@ public class PlayingCard {
         }
     }
 
+    // get methods
     public String toString() {
         return suitValue + suitSymbol;
     }
 
-    // set methods
+    public int getCardValue() {
+        return this.cardValue;
+    }
 
-    public PlayingCard setShow(boolean b) {
+    // set methods
+    public void setShow(boolean b) {
         this.show = b;
-        return this;
+    }
+
+    public void setCardValue(int v) {
+        this.cardValue = v;
     }
 
 }

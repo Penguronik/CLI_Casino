@@ -1,8 +1,8 @@
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
 public class Deck {
+
     private Stack<PlayingCard> deck = new Stack<>();
 
     // makes the deck
@@ -21,7 +21,7 @@ public class Deck {
                 deck.add(new PlayingCard(i, j));
             }
         }
-        if(shuffle){
+        if (shuffle) {
             shuffle();
         }
     }
