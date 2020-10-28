@@ -1,6 +1,6 @@
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
-public class PlayingCard {
+public class PlayingCard{
 
     private int cardValue;
     private final int suitValue;

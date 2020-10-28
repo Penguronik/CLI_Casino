@@ -6,23 +6,24 @@ public class Deck {
     private Stack<PlayingCard> deck = new Stack<>();
 
     // makes the deck
-    public Deck() throws InvalidCardValueException {
+
+    public Deck(String cardType) throws InvalidCardValueException {
         for (int i = 1; i < 14; i++) {
             for (int j = 0; j < 4; j++) {
-                deck.add(new PlayingCard(i, j));
+                deck.add(new PlayingCard(i, j, cardType));
             }
         }
+        this.shuffle();
     }
-
     // makes the deck and shuffles it
-    public Deck(boolean shuffle) throws InvalidCardValueException {
+    public Deck(String cardType, boolean shuffle) throws InvalidCardValueException {
         for (int i = 1; i < 14; i++) {
             for (int j = 0; j < 4; j++) {
-                deck.add(new PlayingCard(i, j));
+                deck.add(new PlayingCard(i, j, cardType));
             }
         }
         if (shuffle) {
-            shuffle();
+            this.shuffle();
         }
     }
 

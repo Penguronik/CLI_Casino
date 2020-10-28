@@ -33,7 +33,6 @@ public class Hand {
         // Also ask Noam to check if a number exists in a deck without being given the suit
     }
     public boolean contains(int v, int s) throws InvalidCardValueException {
-        PlayingCard card = new PlayingCard(v, s);
         return true; //Return true if the array contains the given card, if .equals or something doesn't work ask Noam about it
     }
 
