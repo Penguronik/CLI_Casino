@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -6,7 +7,6 @@ public class Deck {
     private Stack<PlayingCard> deck = new Stack<>();
 
     // makes the deck
-
     public Deck(String cardType) throws InvalidCardValueException {
         for (int i = 1; i < 14; i++) {
             for (int j = 0; j < 4; j++) {
@@ -27,6 +27,10 @@ public class Deck {
         }
     }
 
+    public Stack<PlayingCard> getDeck() {
+        return this.deck;
+    }
+
     public void shuffle(){
         Collections.shuffle(deck);
     }
@@ -41,5 +45,13 @@ public class Deck {
 
     public void clearDeck() {
         deck.clear();
+    }
+
+    public void merge(ArrayList<PlayingCard> l) {
+        deck.addAll(l);
+    }
+
+    public void merge(Deck d) {
+        deck.addAll(d.getDeck());
     }
 }
