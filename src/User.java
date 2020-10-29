@@ -1,9 +1,13 @@
 import com.sun.javaws.exceptions.InvalidArgumentException;
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
+import java.util.UUID;
 
 public class User extends Player{
 
     private double balance;
     private double bet;
+    private short playerID;
 
     //constructor 1
     public User(double balance){
@@ -17,6 +21,8 @@ public class User extends Player{
     }
 
     public double getBet(){return this.bet;}
+
+    public short getPlayerID(){return this.playerID;}
 
     //setters
     public void setBalance(double balance) {
@@ -38,4 +44,7 @@ public class User extends Player{
 
     }
 
+    public void setPlayerID(short playerID) {
+        this.playerID = playerID;
+    }
 }

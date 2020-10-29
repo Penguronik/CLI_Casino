@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+
 public class Hand {
+
+    private ArrayList<PlayingCard> hand = new ArrayList<>();
 
     public void addCard(PlayingCard card){
         //Add card to hand
