@@ -34,4 +34,12 @@ public class Deck {
     public PlayingCard drawCard(){
         return deck.pop();
     }
+
+    public void addCard(PlayingCard c) {
+        deck.add(c);
+    }
+
+    public void clearDeck() {
+        deck.clear();
+    }
 }
