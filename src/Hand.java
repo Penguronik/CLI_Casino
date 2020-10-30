@@ -28,16 +28,21 @@ public class Hand {
         return 0;//Make this return the total of the list (Aces counted as 11
     }
 
-    public boolean contains(PlayingCard card){
-        return true; //Return true if the array contains the given card
-    }
     public boolean contains(int v) {
-        return true; //Return true if the array contains the given card,
-        // if .equals or something doesn't work ask Noam about it
-        // Also ask Noam to check if a number exists in a deck without being given the suit
+        for (PlayingCard card: hand){
+            if(card.getCardValue() == v){
+                return true;
+            }
+        }
+        return false;
     }
-    public boolean contains(int v, int s) throws InvalidCardValueException {
-        return true; //Return true if the array contains the given card, if .equals or something doesn't work ask Noam about it
+    public boolean contains(int v, int s) {
+        for (PlayingCard card: hand){
+            if((card.getCardValue() == v) && (card.getSuitValue() == s)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean checkBust() {

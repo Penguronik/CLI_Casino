@@ -83,6 +83,8 @@ public class PlayingCard{
         return this.cardValue;
     }
 
+    public int getSuitValue(){return this.suitValue;}
+
     // set methods
     public PlayingCard setShow(boolean b) {
         this.show = b;
