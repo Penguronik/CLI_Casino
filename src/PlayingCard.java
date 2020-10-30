@@ -1,6 +1,6 @@
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
-public class PlayingCard{
+public class PlayingCard implements Comparable {
 
     private int cardValue;
     private final int suitValue;
@@ -79,6 +79,8 @@ public class PlayingCard{
         return cardValueString + suitSymbol;
     }
 
+    public String getSuitSymbol() { return this.suitSymbol; }
+
     public int getCardValue() {
         return this.cardValue;
     }
@@ -93,4 +95,21 @@ public class PlayingCard{
         this.cardValue = v;
     }
 
+    public int compareTo(Object o) {
+        PlayingCard pc = (PlayingCard)o;
+        if (cardValue < pc.getCardValue()) {
+            return -1;
+        }
+        else if (cardValue == pc.getCardValue()) {
+            if (suitSymbol.compareTo(pc.getSuitSymbol())<0) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
+        else {
+            return 1;
+        }
+    }
 }
