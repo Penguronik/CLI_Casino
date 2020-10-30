@@ -49,21 +49,21 @@ public class PlayingCard{
             }
             else {
                 switch (s) {
-                    case (0):
+                    case (3):
                         this.suitSymbol = "♠";
                         this.suitValue = 0;
                         break;
-                    case (1):
+                    case (2):
                         this.suitSymbol = "♥";
                         this.suitValue = 1;
                         break;
-                    case (2):
-                        this.suitSymbol = "♣";
+                    case (1):
+                        this.suitSymbol = "♦";
                         this.suitValue = 2;
                         break;
                     default:
                         this.suitValue = 3;
-                        this.suitSymbol = "♦";
+                        this.suitSymbol = "♣";
                         break;
                 }
             }
