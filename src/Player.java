@@ -64,7 +64,17 @@ public class Player {
         //Draw a card from the deck
     }
 
+    public boolean checkBust(){
+        return getHand().checkBust();
+    }
+
     public boolean checkBust(int handNum){
-        return hands.get(handNum).checkBust();
+        return getHand(handNum).checkBust();
+    }
+
+    public void showAll(){
+        for(PlayingCard i: getHand().getArray()){
+            i.setShow(true);
+        }
     }
 }

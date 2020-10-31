@@ -3,9 +3,22 @@ import java.util.ArrayList;
 public class Hand {
 
     private ArrayList<PlayingCard> hand = new ArrayList<>();
+    private double bet;
 
-    public void addCard(PlayingCard card){
-        //Add card to hand
+    public Hand(){
+
+    }
+
+    public Hand(PlayingCard card){
+        addCard(card);
+    }
+
+    public void addCard(PlayingCard card) {
+        hand.add(card);
+    }
+
+    public void removeCard(int index){
+        hand.remove(index);
     }
 
     public void drawCard(Deck deck){
@@ -28,6 +41,14 @@ public class Hand {
         return 0;//Make this return the total of the list (Aces counted as 11
     }
 
+    public double getBet() {
+        return bet;
+    }
+
+    public ArrayList<PlayingCard> getArray(){
+        return hand;
+    }
+
     public boolean contains(int v) {
         for (PlayingCard card: hand){
             if(card.getCardValue() == v){
@@ -45,6 +66,14 @@ public class Hand {
         return false;
     }
 
+    public boolean splittable(){
+        if((hand.size() == 2) && (hand.get(0).getCardValue()==hand.get(1).getCardValue())){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public boolean checkBust() {
         if (this.getTotal(true)>21){
             return true;
@@ -52,4 +81,11 @@ public class Hand {
         return false;
     }
 
+    public void setBet(double bet) {
+        if (bet < 0) {
+            throw new IllegalArgumentException("Bet can't be negative");
+        } else {
+            this.bet = bet;
+        }
+    }
 }

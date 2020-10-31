@@ -1,8 +1,6 @@
 public class User extends Player{
 
     private double balance;
-    private double bet;
-    private short playerID;
 
     //constructor 1
     public User(double balance){
@@ -15,9 +13,9 @@ public class User extends Player{
         return this.balance;
     }
 
-    public double getBet(){return this.bet;}
+    public double getBet(){return this.getHand(0).getBet();}
 
-    public short getPlayerID(){return this.playerID;}
+    public double getBet(int handNum){return this.getHand(handNum).getBet();}
 
     //setters
     public void setBalance(double balance) {
@@ -34,12 +32,27 @@ public class User extends Player{
         }else if(bet > balance){
             throw new IllegalArgumentException("Bet can't be higher than balance");
         }else{
-            this.bet = bet;
+            this.getHand(0).setBet(bet);
+            this.balance -= bet;
         }
 
     }
 
-    public void setPlayerID(short playerID) {
-        this.playerID = playerID;
+    public void setBet(double bet, int handNum){
+        if (bet < 0) {
+            throw new IllegalArgumentException("Bet can't be negative");
+        }else if(bet > balance){
+            throw new IllegalArgumentException("Bet can't be higher than balance");
+        }else{
+            this.getHand(handNum).setBet(bet);
+            this.balance -= bet;
+        }
+
+    }
+
+    public void split(int handNum){
+        addHand(new Hand(getHand(handNum).getArray().get(0)));
+        getHand(handNum).removeCard(1);
+        setBet(getBet(handNum), handNum + 1);
     }
 }

@@ -7,8 +7,7 @@ public class BlackJack {
         User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        int handNum = 0;
-        boolean keepPlaying = true, canSplit = true, canStand = true, canHit = true, canDouble = true;
+        boolean mainLoop = true, actionLoop = true, canSplit = true, canStand = true, canHit = true, canDouble = true, won = false;
         //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
         //1
         mainLoop: do {
@@ -18,27 +17,71 @@ public class BlackJack {
             //2
             //Make it show cards in hand to only the user who is seeing it. Creates opportunity for networking.
             //(You may need to understand networking to be able to do this so you can just show all user cards for now)
-            user.drawCard(playingDeck, handNum);
+            user.drawCard(playingDeck, true);
 
             //3
             dealer.drawCard(playingDeck, true);
 
             //4
-            user.drawCard(playingDeck, handNum);
+            user.drawCard(playingDeck, true);
 
             //5
             dealer.drawCard(playingDeck);
 
             //6
-            if (user.getHand(handNum).getTotal(true) == 21) {
-                System.out.println("You Won");
-                break;
+            if (user.getHand().getTotal(true) == 21) {
+                won = true;
             }
 
-            //7
-            gameLoop: do {
-                System.out.println("Pick one of: " + (canSplit ? "split" : "") + "stand, " + "hit, " + (canDouble ? "double" : ""));
-            }while(true);//fix
+            //7 ADD BALANCE CHECK FOR DOUBLING
+            for (int handNum = 0; handNum < user.getHands().size(); handNum++) {
+                canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2*user.getBet(handNum));
+                canDouble = user.getBalance() >= 2*user.getBet(handNum);
+                actionLoop: while (actionLoop) {
+                    System.out.println("Pick one of: " + (canSplit ? "split, " : "") + (canDouble ? "double, " : "") + "stand, " + "hit");
+                    switch (sc.nextLine()) {
+                        case "split":
+                            if (canSplit) {
+                                user.split(handNum);
+                                canDouble = false;
+                                break;
+                            }
+                        case "stand":
+                            break actionLoop;
+                        case "hit":
+                            user.drawCard(playingDeck, handNum, true);
+                            canSplit = false;
+                            canDouble = false;
+                            break;
+                        case "double":
+                            if (canDouble) {
+                                user.drawCard(playingDeck, handNum, true);
+                                break actionLoop;
+                            }
+                        default:
+                            System.out.println("Wrong input");
+
+                    }//End of switch
+
+                    if (user.checkBust(handNum)) {
+
+                        break;
+                    }
+
+                }//End of actionLoop
+            }//End of for loop
+
+            //This part is very work in progress
+            if (won){
+                dealer.showAll();
+            }
+
+            while (dealer.getHand().getTotal(true) < 17){
+                dealer.drawCard(playingDeck);
+                if(dealer.checkBust()){
+                    break;
+                }
+            }
             /*Game flow
             1. Choose how much to bet
             2. 1 card to player
@@ -75,6 +118,6 @@ public class BlackJack {
                 c. else: tie
             12. Cards disposed (held in a trash deck?)
              */
-        }while(keepPlaying);
+        }while(mainLoop);
     }
 }
