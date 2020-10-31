@@ -1,8 +1,3 @@
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
-import java.util.UUID;
-
 public class User extends Player{
 
     private double balance;
