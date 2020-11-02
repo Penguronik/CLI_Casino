@@ -35,6 +35,10 @@ public class Deck {
         Collections.shuffle(deck);
     }
 
+    public void sort(){
+        deck.sort(PlayingCard::compareTo);
+    }
+
     public PlayingCard drawCard(){
         return deck.pop();
     }
