@@ -54,4 +54,8 @@ public class Deck {
     public void merge(Deck d) {
         deck.addAll(d.getDeck());
     }
+
+    public String toString(){
+        return deck.toString();
+    }
 }

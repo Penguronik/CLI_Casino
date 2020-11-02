@@ -12,6 +12,7 @@ public class BlackJack {
         //1
         mainLoop: do {
             /*Get user bet*/
+            System.out.println(playingDeck);
             user.setBet(sc.nextDouble());
 
             //2
@@ -70,8 +71,6 @@ public class BlackJack {
 
                 }//End of actionLoop
             }//End of for loop
-
-            //This part is very work in progress
             if (naturalBlackjack){
                 dealer.showAll();
                 System.out.println("Natural Blackjack, You Won!");

@@ -7,7 +7,7 @@ public class Player {
     //constructor 1
     public Player(){
         //This is what is run when it is extended
-
+        hands.add(new Hand());
     }
 
     //getters

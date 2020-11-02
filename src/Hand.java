@@ -10,7 +10,6 @@ public class Hand {
     }
 
     public Hand(PlayingCard card){
-        addCard(card);
     }
 
     public void addCard(PlayingCard card) {

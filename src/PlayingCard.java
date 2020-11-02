@@ -73,10 +73,6 @@ public class PlayingCard{
 
 
     // get methods
-    public String toString() {
-        return cardValueString + suitSymbol;
-    }
-
     public int getCardValue() {
         return this.cardValue;
     }
@@ -91,6 +87,10 @@ public class PlayingCard{
 
     public void setCardValue(int v) {
         this.cardValue = v;
+    }
+
+    public String toString() {
+        return cardValueString + suitSymbol;
     }
 
 }
