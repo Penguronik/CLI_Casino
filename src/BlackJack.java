@@ -7,7 +7,7 @@ public class BlackJack {
         User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        boolean mainLoop = true, actionLoop = true, canSplit = true, canStand = true, canHit = true, canDouble = true, naturalBlackjack = false, bust = false;
+        boolean mainLoop = true, actionLoop = true, canSplit, canStand = true, canHit = true, canDouble, naturalBlackjack = false, bust = false, dealerBust = false;
         //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
         //1
         mainLoop: do {
@@ -83,15 +83,17 @@ public class BlackJack {
                     dealer.drawCard(playingDeck);
                     if(dealer.checkBust()){
                         System.out.println("Dealer Busted, You Won!");
-                        break;
+                        dealerBust = true;
                     }
                 }
-                if(dealer.getHand().getTotal(true) > user.getHand().getTotal(true)){
-                    System.out.println("You Lost!");
-                }else if(dealer.getHand().getTotal(true) < user.getHand().getTotal(true)){
-                    System.out.println("You Won!");
-                }else{
-                    System.out.println("Tie!");
+                if (!dealerBust) {
+                    if (dealer.getHand().getTotal(true) > user.getHand().getTotal(true)) {
+                        System.out.println("You Lost!");
+                    } else if (dealer.getHand().getTotal(true) < user.getHand().getTotal(true)) {
+                        System.out.println("You Won!");
+                    } else {
+                        System.out.println("Tie!");
+                    }
                 }
             }
 
