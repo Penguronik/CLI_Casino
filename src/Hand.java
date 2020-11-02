@@ -36,10 +36,6 @@ public class Hand {
         return 0;//Make this return the total of the list (Aces counted as 1)
     }
 
-    public int getTotal(boolean checkAces){
-        return 0;//Make this return the total of the list (Aces counted as 11
-    }
-
     public double getBet() {
         return bet;
     }
