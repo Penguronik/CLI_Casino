@@ -70,7 +70,7 @@ public class Hand {
     }
 
     public boolean checkBust() {
-        if (this.getTotal(true)>21){
+        if (this.getTotal()>21){
             return true;
         }// Figure out a place where Ace is checked for and stuff math
         return false;
