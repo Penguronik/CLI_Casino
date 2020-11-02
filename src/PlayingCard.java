@@ -81,6 +81,10 @@ public class PlayingCard implements Comparable<PlayingCard> {
 
     public String getSuitSymbol() { return this.suitSymbol; }
 
+    public String toString() {
+        return cardValueString + suitSymbol;
+    }
+
     // set methods
     public PlayingCard setShow(boolean b) {
         this.show = b;
@@ -91,10 +95,7 @@ public class PlayingCard implements Comparable<PlayingCard> {
         this.cardValue = v;
     }
 
-    public String toString() {
-        return cardValueString + suitSymbol;
-    }
-
+    // compareTo() method
     public int compareTo(PlayingCard pc) {
         if (cardValue < pc.getCardValue()) {
             return -1;
