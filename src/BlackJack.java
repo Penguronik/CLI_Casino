@@ -7,7 +7,7 @@ public class BlackJack {
         User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        boolean mainLoop = true, actionLoop = true, canSplit = true, canStand = true, canHit = true, canDouble = true, won = false;
+        boolean mainLoop = true, actionLoop = true, canSplit = true, canStand = true, canHit = true, canDouble = true, naturalBlackjack = false, bust = false;
         //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
         //1
         mainLoop: do {
@@ -30,7 +30,7 @@ public class BlackJack {
 
             //6
             if (user.getHand().getTotal(true) == 21) {
-                won = true;
+                naturalBlackjack = true;
             }
 
             //7 ADD BALANCE CHECK FOR DOUBLING
@@ -64,7 +64,7 @@ public class BlackJack {
                     }//End of switch
 
                     if (user.checkBust(handNum)) {
-
+                        bust = true;
                         break;
                     }
 
@@ -72,16 +72,30 @@ public class BlackJack {
             }//End of for loop
 
             //This part is very work in progress
-            if (won){
+            if (naturalBlackjack){
                 dealer.showAll();
-            }
-
-            while (dealer.getHand().getTotal(true) < 17){
-                dealer.drawCard(playingDeck);
-                if(dealer.checkBust()){
-                    break;
+                System.out.println("Natural Blackjack, You Won!");
+            }else if(bust){
+                dealer.showAll();
+                System.out.println("You Busted!");
+            }else{
+                while (dealer.getHand().getTotal(true) < 17){
+                    dealer.drawCard(playingDeck);
+                    if(dealer.checkBust()){
+                        System.out.println("Dealer Busted, You Won!");
+                        break;
+                    }
+                }
+                if(dealer.getHand().getTotal(true) > user.getHand().getTotal(true)){
+                    System.out.println("You Lost!");
+                }else if(dealer.getHand().getTotal(true) < user.getHand().getTotal(true)){
+                    System.out.println("You Won!");
+                }else{
+                    System.out.println("Tie!");
                 }
             }
+
+
             /*Game flow
             1. Choose how much to bet
             2. 1 card to player
