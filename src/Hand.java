@@ -33,7 +33,7 @@ public class Hand {
     }
 
     public int getTotal(){
-        return 0;//Make this return the total of the list (Aces counted as 1)
+        return 0;//Make this return the total of the list
     }
 
     public double getBet() {
