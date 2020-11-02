@@ -1,4 +1,4 @@
-public class PlayingCard{
+public class PlayingCard implements Comparable {
 
     private int cardValue;
     private final int suitValue;
@@ -79,6 +79,8 @@ public class PlayingCard{
 
     public int getSuitValue(){return this.suitValue;}
 
+    public String getSuitSymbol() { return this.suitSymbol; }
+
     // set methods
     public PlayingCard setShow(boolean b) {
         this.show = b;
@@ -91,6 +93,24 @@ public class PlayingCard{
 
     public String toString() {
         return cardValueString + suitSymbol;
+    }
+
+    public int compareTo(Object o) {
+        PlayingCard pc = (PlayingCard)o;
+        if (cardValue < pc.getCardValue()) {
+            return -1;
+        }
+        else if (cardValue == pc.getCardValue()) {
+            if (suitSymbol.compareTo(pc.getSuitSymbol())<0) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
+        else {
+            return 1;
+        }
     }
 
 }
