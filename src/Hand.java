@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Hand {
 
@@ -33,8 +34,23 @@ public class Hand {
     }
 
     public int getTotal(){
-        return 0;//Make this return the total of the list
+        int total = 0;
+        for (PlayingCard card : hand){
+            total += card.getCardValue();
+        }
+
+        for (PlayingCard card : hand){
+            if (total + 10 <= 21){
+                if (card.getCardValue() == 1){
+                    total += 10;
+                }
+            } else {
+                break;
+            }
+        }
+        return total;
     }
+
 
     public double getBet() {
         return bet;
@@ -70,7 +86,7 @@ public class Hand {
     }
 
     public boolean checkBust() {
-        if (this.getTotal(true)>21){
+        if (this.getTotal()>21){
             return true;
         }// Figure out a place where Ace is checked for and stuff math
         return false;
