@@ -82,7 +82,11 @@ public class PlayingCard implements Comparable<PlayingCard> {
     public String getSuitSymbol() { return this.suitSymbol; }
 
     public String toString() {
-        return cardValueString + suitSymbol;
+        if(show){
+            return cardValueString + suitSymbol;
+        }else{
+            return "▣";
+        }
     }
 
     // set methods

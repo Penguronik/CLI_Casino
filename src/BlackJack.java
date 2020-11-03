@@ -29,6 +29,9 @@ public class BlackJack {
             //5
             dealer.drawCard(playingDeck);
 
+            System.out.println(user.getHand());
+            System.out.println(dealer.getHand());
+
             //6
             if (user.getHand().getTotal() == 21) {
                 naturalBlackjack = true;

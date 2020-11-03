@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Hand {
 
@@ -82,5 +83,9 @@ public class Hand {
         } else {
             this.bet = bet;
         }
+    }
+
+    public String toString(){
+        return Arrays.toString(hand.toArray());
     }
 }
