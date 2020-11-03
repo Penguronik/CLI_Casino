@@ -7,13 +7,15 @@ public class BlackJack {
         User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        boolean mainLoop = true, actionLoop = true, canSplit, canStand = true, canHit = true, canDouble, naturalBlackjack = false, bust = false, dealerBust = false;
+        boolean mainLoop = false, actionLoop = true, canSplit, canStand = true, canHit = true, canDouble, naturalBlackjack = false, bust = false, dealerBust = false;
         //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
         //1
         mainLoop: do {
             /*Get user bet*/
-            System.out.println(playingDeck);
+            System.out.println("Your balance is: " + user.getBalance());
+            System.out.print("Enter your bet: ");
             user.setBet(sc.nextDouble());
+            sc.nextLine();//This line is here to fix the glitch with scanner
 
             //2
             //Make it show cards in hand to only the user who is seeing it. Creates opportunity for networking.
@@ -81,7 +83,7 @@ public class BlackJack {
                 dealer.showAll();
                 System.out.println("You Busted!");
             }else{
-                while (dealer.getHand().getTotal() < 17){
+                while (dealer.shouldHit()){
                     dealer.drawCard(playingDeck);
                     if(dealer.checkBust()){
                         System.out.println("Dealer Busted, You Won!");
