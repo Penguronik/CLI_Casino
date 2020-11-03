@@ -34,8 +34,23 @@ public class Hand {
     }
 
     public int getTotal(){
-        return 0;//Make this return the total of the list
+        int total = 0;
+        for (PlayingCard card : hand){
+            total += card.getCardValue();
+        }
+
+        for (PlayingCard card : hand){
+            if (total + 10 <= 21){
+                if (card.getCardValue() == 1){
+                    total += 10;
+                }
+            } else {
+                break;
+            }
+        }
+        return total;
     }
+
 
     public double getBet() {
         return bet;
