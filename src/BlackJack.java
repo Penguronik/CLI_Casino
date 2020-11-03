@@ -30,7 +30,7 @@ public class BlackJack {
             dealer.drawCard(playingDeck);
 
             //6
-            if (user.getHand().getTotal(true) == 21) {
+            if (user.getHand().getTotal() == 21) {
                 naturalBlackjack = true;
             }
 
@@ -78,7 +78,7 @@ public class BlackJack {
                 dealer.showAll();
                 System.out.println("You Busted!");
             }else{
-                while (dealer.getHand().getTotal(true) < 17){
+                while (dealer.getHand().getTotal() < 17){
                     dealer.drawCard(playingDeck);
                     if(dealer.checkBust()){
                         System.out.println("Dealer Busted, You Won!");
@@ -86,9 +86,9 @@ public class BlackJack {
                     }
                 }
                 if (!dealerBust) {
-                    if (dealer.getHand().getTotal(true) > user.getHand().getTotal(true)) {
+                    if (dealer.getHand().getTotal() > user.getHand().getTotal()) {
                         System.out.println("You Lost!");
-                    } else if (dealer.getHand().getTotal(true) < user.getHand().getTotal(true)) {
+                    } else if (dealer.getHand().getTotal() < user.getHand().getTotal()) {
                         System.out.println("You Won!");
                     } else {
                         System.out.println("Tie!");
