@@ -73,7 +73,11 @@ public class BlackJack {
                         bust = true;
                         break;
                     }
-
+                    System.out.print("Dealer Cards: ");
+                    System.out.println(dealer.getHand());
+                    System.out.println();
+                    System.out.print("Player Cards:");
+                    System.out.println(user.getHand());
                 }//End of actionLoop
             }//End of for loop
             if (naturalBlackjack){
