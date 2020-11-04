@@ -47,12 +47,36 @@ public class User extends Player{
             this.getHand(handNum).setBet(bet);
             this.balance -= bet;
         }
-
     }
 
-    public void split(int handNum){
+    public void split(int handNum, Deck deck){
         addHand(new Hand(getHand(handNum).getArray().get(0)));
         getHand(handNum).removeCard(1);
         setBet(getBet(handNum), handNum + 1);
+        getHand(handNum).drawCard(deck);
+        getHand(handNum + 1).drawCard(deck);
+    }
+
+    public void lost(int handNum){
+        getHand(handNum).setBet(0);
+    }
+
+    public void tie(int handNum){
+        balance += getHand(handNum).getBet();
+        getHand(handNum).setBet(0);
+    }
+
+    public void won(int handNum){
+        balance += 2* getHand(handNum).getBet();
+        getHand(handNum).setBet(0);
+    }
+
+    public void won(int handNum, boolean nbj){
+        if (nbj){
+            balance += 2.5 * getHand(handNum).getBet();
+        }else {
+            balance += 2 * getHand(handNum).getBet();
+        }
+        getHand(handNum).setBet(0);
     }
 }

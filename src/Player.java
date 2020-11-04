@@ -6,11 +6,12 @@ public class Player {
 
     //constructor 1
     public Player(){
-        //This is what is run when it is extended
-        hands.add(new Hand());
     }
 
     //getters
+    public void createHand(){
+        hands.add(new Hand());
+    }
 
     public Hand getHand(){
         return this.hands.get(0);
@@ -36,7 +37,7 @@ public class Player {
         this.hands.add(hand);
     }
 
-    public void clearHand(){
+    public void clearHands(){
         this.hands.clear();
     }
 
@@ -73,8 +74,8 @@ public class Player {
     }
 
     public void showAll(){
-        for(PlayingCard i: getHand().getArray()){
-            i.setShow(true);
+        for(Hand i: getHands()){
+            i.showAll();
         }
     }
 }

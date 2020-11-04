@@ -78,7 +78,7 @@ public class Hand {
     }
 
     public boolean splittable(){
-        if((hand.size() == 2) && (hand.get(0).getCardValue()==hand.get(1).getCardValue())){
+        if((hand.size() ==2) && (hand.get(0).getCardValue()==hand.get(1).getCardValue())){
             return true;
         } else{
             return false;
