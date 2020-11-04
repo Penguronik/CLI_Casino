@@ -103,4 +103,10 @@ public class Hand {
     public String toString(){
         return Arrays.toString(hand.toArray());
     }
+
+    public void showAll() {
+        for (PlayingCard card:hand) {
+            card.setShow(true);
+        }
+    }
 }
