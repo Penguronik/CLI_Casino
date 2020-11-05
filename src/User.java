@@ -90,4 +90,8 @@ public class User extends Player{
         }
         getHand(handNum).setBet(0);
     }
+
+    public String toString(){
+        return getHands().toString();
+    }
 }

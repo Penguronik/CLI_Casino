@@ -7,7 +7,7 @@ public class BlackJack {
         User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        boolean mainLoop = true, actionLoop = true, canSplit, canStand = true, canHit = true, canDouble, naturalBlackjack = false, bust = false, dealerBust = false;
+        boolean mainLoop = true, actionLoop = true, canSplit, canDouble, naturalBlackjack = false, bust = false, dealerBust = false;
         //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
         //1
         mainLoop: do {
@@ -32,9 +32,6 @@ public class BlackJack {
             //5
             dealer.drawCard(playingDeck);
 
-            System.out.println("\n" + "Dealer Cards: " + dealer.getHand());
-            System.out.println("User Cards: " + user.getHand() + "\n");
-
             //6
             if (user.getHand().getTotal() == 21) {
                 naturalBlackjack = true;
@@ -42,8 +39,13 @@ public class BlackJack {
 
             //7 ADD BALANCE CHECK FOR DOUBLING
 
-            for (int handNum = 0; handNum < user.getHands().size(); handNum++) {
+            //for (int handNum = 0; handNum < user.getHands().size(); handNum++) {
+            while (user.getHands().size() > 0) {
+                System.out.println("\n" + "Dealer Cards: " + dealer.getHand());
+                System.out.println("User Cards: " + user.getHand() + "\n");
+                int handNum = 0; //handNum is always 0 now as we've switched from using a for loop to iterate to using a while loop as otherwise I am unable to add to the arrayList (because Java doesn't allow that)
                 actionLoop: while (actionLoop) {
+                    System.out.println(user);
                     canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2*user.getBet(handNum));
                     canDouble = (user.getBalance() >= 2*user.getBet(handNum)) && (user.getHand(handNum).getArray().size() == 2);
                     System.out.println("Pick one of: " + (canSplit ? "split, " : "") + (canDouble ? "double, " : "") + "stand, " + "hit");
@@ -112,9 +114,12 @@ public class BlackJack {
                         }
                     }
                 }
-            }//End of for loop
+                user.getHands().remove(0);
+            }//End of while loop
             user.clearHands();
             dealer.clearHands();
+            naturalBlackjack = false;
+            dealerBust = false;
             System.out.println("Your final balance is: " + user.getBalance());
             System.out.print("Type \"Q\" to quit and anything else to keep playing: ");
             mainLoop = !sc.nextLine().equals("Q");
