@@ -15,7 +15,6 @@ public class BlackJack {
             user.createHand();
             dealer.createHand();
             handNum = 0;
-            /*Get user bet*/
             System.out.println("Your balance is: " + user.getBalance());
             System.out.print("Enter your bet: ");
             user.setBet(sc.nextDouble());
@@ -79,7 +78,7 @@ public class BlackJack {
                     }
                 }//End of actionLoop
 
-                user.getHand().setBust(user.checkBust(handNum));
+                user.getHand(handNum).setBust(user.checkBust(handNum));
 
                 handNum++;
             } while (handNum < user.getHands().size());
@@ -87,16 +86,14 @@ public class BlackJack {
             handNum = 0;
 
             do {
-                System.out.println(user);
-                System.out.println(handNum);
                 dealer.showAll();
                 System.out.println("Dealer Cards: " + dealer.getHand());
                 System.out.println("Player Cards: " + user + "\n");
                 if (user.getHand(handNum).getNBJ()) {
-                    System.out.println("Hand #" + handNum + " Has Natural Blackjack, You Won!");
+                    System.out.println("Hand #" + handNum + 1 + " Has Natural Blackjack, You Won!");
                     user.won(handNum, true);
-                } else if (user.getHand().getBust()) {
-                    System.out.println("Hand #" + handNum + " Busted!");
+                } else if (user.getHand(handNum).getBust()) {
+                    System.out.println("Hand #" + handNum + 1 + " Busted!");
                     user.lost(handNum);
                 } else {
                     while (dealer.shouldHit()) {
@@ -104,20 +101,20 @@ public class BlackJack {
                         System.out.println("Dealer Cards: " + dealer.getHand());
                         System.out.println("Player Cards: " + user + "\n");
                         if (dealer.checkBust()) {
-                            System.out.println("Dealer Busted, Hand #" + handNum + " Won!");
+                            System.out.println("Dealer Busted, Hand #" + handNum + 1 + " Won!");
                             dealerBust = true;
                             user.won(handNum);
                         }
                     }
                     if (!dealerBust) {
-                        if (dealer.getHand().getTotal() > user.getHand().getTotal()) {
-                            System.out.println("Hand #" + handNum + " Lost!");
+                        if (dealer.getHand().getTotal() > user.getHand(handNum).getTotal()) {
+                            System.out.println("Hand #" + handNum + 1 + " Lost!");
                             user.lost(handNum);
-                        } else if (dealer.getHand().getTotal() < user.getHand().getTotal()) {
-                            System.out.println("Hand #" + handNum + " Won!");
+                        } else if (dealer.getHand().getTotal() < user.getHand(handNum).getTotal()) {
+                            System.out.println("Hand #" + handNum + 1 + " Won!");
                             user.won(handNum);
                         } else {
-                            System.out.println("Hand #" + handNum + " Tied!");
+                            System.out.println("Hand #" + handNum + 1 + " Tied!");
                             user.tie(handNum);
                         }
                     }
