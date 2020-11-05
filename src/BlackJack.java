@@ -32,8 +32,8 @@ public class BlackJack {
             //5
             dealer.drawCard(playingDeck);
 
-            System.out.println("Dealer Cards: " + dealer.getHand());
-            System.out.println("User Cards: " + user.getHand());
+            System.out.println("\n" + "Dealer Cards: " + dealer.getHand());
+            System.out.println("User Cards: " + user.getHand() + "\n");
 
             //6
             if (user.getHand().getTotal() == 21) {
@@ -41,29 +41,27 @@ public class BlackJack {
             }
 
             //7 ADD BALANCE CHECK FOR DOUBLING
+
             for (int handNum = 0; handNum < user.getHands().size(); handNum++) {
-                canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2*user.getBet(handNum));
-                canDouble = user.getBalance() >= 2*user.getBet(handNum);
                 actionLoop: while (actionLoop) {
+                    canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2*user.getBet(handNum));
+                    canDouble = (user.getBalance() >= 2*user.getBet(handNum)) && (user.getHand(handNum).getArray().size() == 2);
                     System.out.println("Pick one of: " + (canSplit ? "split, " : "") + (canDouble ? "double, " : "") + "stand, " + "hit");
                     switch (sc.nextLine()) {
                         case "split":
                             if (canSplit) {
                                 user.split(handNum, playingDeck);
-                                canDouble = false;
                                 break;
                             }
                         case "stand":
                             break actionLoop;
                         case "hit":
                             user.drawCard(playingDeck, handNum, true);
-                            canSplit = false;
-                            canDouble = false;
                             break;
                         case "double":
                             if (canDouble) {
                                 user.drawCard(playingDeck, handNum, true);
-                                user.setBet(user.getBet(handNum), handNum);
+                                user.addBet(user.getBet(handNum), handNum);
                                 break actionLoop;
                             }
                         default:
@@ -72,17 +70,18 @@ public class BlackJack {
                     }//End of switch
 
                     System.out.println("Dealer Cards: " + dealer.getHand());
-                    System.out.println("Player Cards: " + user.getHand());
+                    System.out.println("Player Cards: " + user.getHand() + "\n");
 
                     if (user.checkBust(handNum)) {
-                        bust = true;
                         break;
                     }
                 }//End of actionLoop
 
+                bust = user.checkBust(handNum);
+
                 dealer.showAll();
                 System.out.println("Dealer Cards: " + dealer.getHand());
-                System.out.println("Player Cards: " + user.getHand());
+                System.out.println("Player Cards: " + user.getHand() + "\n");
                 if (naturalBlackjack){
                     System.out.println("Natural Blackjack, You Won!");
                     user.won(handNum, true);

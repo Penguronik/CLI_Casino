@@ -100,6 +100,14 @@ public class Hand {
         }
     }
 
+    public void addBet(double bet) {
+        if (bet < 0) {
+            throw new IllegalArgumentException("Bet can't be negative");
+        } else {
+            this.bet += bet;
+        }
+    }
+
     public String toString(){
         return Arrays.toString(hand.toArray());
     }
