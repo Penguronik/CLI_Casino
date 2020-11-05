@@ -61,11 +61,11 @@ public class User extends Player{
     }
 
     public void split(int handNum, Deck deck){
-        addHand(new Hand(getHand(handNum).getArray().get(0)));
+        addHand(new Hand(getHand(handNum).getArray().get(1)));
         getHand(handNum).removeCard(1);
-        setBet(getBet(handNum), handNum + 1);
+        setBet(getBet(handNum), getHands().size()-1);
         drawCard(deck, handNum, true);
-        drawCard(deck, handNum + 1, true);
+        drawCard(deck, getHands().size()-1, true);
     }
 
     public void lost(int handNum){

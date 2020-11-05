@@ -7,12 +7,14 @@ public class BlackJack {
         User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        boolean mainLoop = true, actionLoop = true, canSplit, canDouble, naturalBlackjack = false, bust = false, dealerBust = false;
+        boolean mainLoop, actionLoop = true, canSplit, canDouble, dealerBust = false;
+        int handNum;
         //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
         //1
-        mainLoop: do {
+        do {
             user.createHand();
             dealer.createHand();
+            handNum = 0;
             /*Get user bet*/
             System.out.println("Your balance is: " + user.getBalance());
             System.out.print("Enter your bet: ");
@@ -34,20 +36,18 @@ public class BlackJack {
 
             //6
             if (user.getHand().getTotal() == 21) {
-                naturalBlackjack = true;
+                user.getHand(handNum).setNBJ(true);
             }
 
-            //7 ADD BALANCE CHECK FOR DOUBLING
-
-            //for (int handNum = 0; handNum < user.getHands().size(); handNum++) {
-            while (user.getHands().size() > 0) {
+            //7
+            do {
                 System.out.println("\n" + "Dealer Cards: " + dealer.getHand());
-                System.out.println("User Cards: " + user.getHand() + "\n");
-                int handNum = 0; //handNum is always 0 now as we've switched from using a for loop to iterate to using a while loop as otherwise I am unable to add to the arrayList (because Java doesn't allow that)
-                actionLoop: while (actionLoop) {
-                    System.out.println(user);
-                    canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2*user.getBet(handNum));
-                    canDouble = (user.getBalance() >= 2*user.getBet(handNum)) && (user.getHand(handNum).getArray().size() == 2);
+                System.out.println("User Cards: " + user + "\n");
+                actionLoop:
+                while (actionLoop) {
+                    System.out.println("You're On Hand #" + handNum);
+                    canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2 * user.getBet(handNum));
+                    canDouble = (user.getBalance() >= 2 * user.getBet(handNum)) && (user.getHand(handNum).getArray().size() == 2);
                     System.out.println("Pick one of: " + (canSplit ? "split, " : "") + (canDouble ? "double, " : "") + "stand, " + "hit");
                     switch (sc.nextLine()) {
                         case "split":
@@ -72,57 +72,66 @@ public class BlackJack {
                     }//End of switch
 
                     System.out.println("Dealer Cards: " + dealer.getHand());
-                    System.out.println("Player Cards: " + user.getHand() + "\n");
+                    System.out.println("Player Cards: " + user + "\n");
 
                     if (user.checkBust(handNum)) {
                         break;
                     }
                 }//End of actionLoop
 
-                bust = user.checkBust(handNum);
+                user.getHand().setBust(user.checkBust(handNum));
 
+                handNum++;
+            } while (handNum < user.getHands().size());
+
+            handNum = 0;
+
+            do {
+                System.out.println(user);
+                System.out.println(handNum);
                 dealer.showAll();
                 System.out.println("Dealer Cards: " + dealer.getHand());
-                System.out.println("Player Cards: " + user.getHand() + "\n");
-                if (naturalBlackjack){
-                    System.out.println("Natural Blackjack, You Won!");
+                System.out.println("Player Cards: " + user + "\n");
+                if (user.getHand(handNum).getNBJ()) {
+                    System.out.println("Hand #" + handNum + " Has Natural Blackjack, You Won!");
                     user.won(handNum, true);
-                }else if(bust){
-                    System.out.println("You Busted!");
+                } else if (user.getHand().getBust()) {
+                    System.out.println("Hand #" + handNum + " Busted!");
                     user.lost(handNum);
-                }else{
-                    while (dealer.shouldHit()){
+                } else {
+                    while (dealer.shouldHit()) {
                         dealer.drawCard(playingDeck, true);
                         System.out.println("Dealer Cards: " + dealer.getHand());
-                        System.out.println("Player Cards: " + user.getHand() + "\n");
-                        if(dealer.checkBust()){
-                            System.out.println("Dealer Busted, You Won!");
+                        System.out.println("Player Cards: " + user + "\n");
+                        if (dealer.checkBust()) {
+                            System.out.println("Dealer Busted, Hand #" + handNum + " Won!");
                             dealerBust = true;
                             user.won(handNum);
                         }
                     }
                     if (!dealerBust) {
                         if (dealer.getHand().getTotal() > user.getHand().getTotal()) {
-                            System.out.println("You Lost!");
+                            System.out.println("Hand #" + handNum + " Lost!");
                             user.lost(handNum);
                         } else if (dealer.getHand().getTotal() < user.getHand().getTotal()) {
-                            System.out.println("You Won!");
+                            System.out.println("Hand #" + handNum + " Won!");
                             user.won(handNum);
                         } else {
-                            System.out.println("Tie!");
+                            System.out.println("Hand #" + handNum + " Tied!");
                             user.tie(handNum);
                         }
                     }
                 }
-                user.getHands().remove(0);
-            }//End of while loop
+                user.getHand(handNum).setNBJ(false);
+                user.getHand(handNum).setBust(false);
+                handNum++;
+            } while (handNum < user.getHands().size());
             user.clearHands();
             dealer.clearHands();
-            naturalBlackjack = false;
             dealerBust = false;
             System.out.println("Your final balance is: " + user.getBalance());
             System.out.print("Type \"Q\" to quit and anything else to keep playing: ");
             mainLoop = !sc.nextLine().equals("Q");
-        }while(mainLoop);
+        } while (mainLoop);
     }
 }
