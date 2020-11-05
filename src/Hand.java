@@ -5,12 +5,15 @@ public class Hand {
 
     private ArrayList<PlayingCard> hand = new ArrayList<>();
     private double bet;
+    private boolean naturalBlackJack = false;
+    private boolean bust = false;
 
     public Hand(){
 
     }
 
     public Hand(PlayingCard card){
+        hand.add(card);
     }
 
     public void addCard(PlayingCard card) {
@@ -60,6 +63,8 @@ public class Hand {
         return hand;
     }
 
+    public boolean getNBJ(){return naturalBlackJack;}
+
     public boolean contains(int v) {
         for (PlayingCard card: hand){
             if(card.getCardValue() == v){
@@ -92,11 +97,23 @@ public class Hand {
         return false;
     }
 
+    public void setNBJ(boolean b){
+        naturalBlackJack = b;
+    }
+
     public void setBet(double bet) {
         if (bet < 0) {
             throw new IllegalArgumentException("Bet can't be negative");
         } else {
             this.bet = bet;
+        }
+    }
+
+    public void addBet(double bet) {
+        if (bet < 0) {
+            throw new IllegalArgumentException("Bet can't be negative");
+        } else {
+            this.bet += bet;
         }
     }
 
@@ -108,5 +125,13 @@ public class Hand {
         for (PlayingCard card:hand) {
             card.setShow(true);
         }
+    }
+
+    public void setBust(boolean b) {
+        bust = b;
+    }
+
+    public boolean getBust() {
+        return bust;
     }
 }

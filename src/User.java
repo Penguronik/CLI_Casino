@@ -49,12 +49,23 @@ public class User extends Player{
         }
     }
 
+    public void addBet(double bet, int handNum){
+        if (bet < 0) {
+            throw new IllegalArgumentException("Bet can't be negative");
+        }else if(bet > balance){
+            throw new IllegalArgumentException("Bet can't be higher than balance");
+        }else{
+            this.getHand(handNum).addBet(bet);
+            this.balance -= bet;
+        }
+    }
+
     public void split(int handNum, Deck deck){
-        addHand(new Hand(getHand(handNum).getArray().get(0)));
+        addHand(new Hand(getHand(handNum).getArray().get(1)));
         getHand(handNum).removeCard(1);
-        setBet(getBet(handNum), handNum + 1);
-        getHand(handNum).drawCard(deck);
-        getHand(handNum + 1).drawCard(deck);
+        setBet(getBet(handNum), getHands().size()-1);
+        drawCard(deck, handNum, true);
+        drawCard(deck, getHands().size()-1, true);
     }
 
     public void lost(int handNum){
@@ -78,5 +89,9 @@ public class User extends Player{
             balance += 2 * getHand(handNum).getBet();
         }
         getHand(handNum).setBet(0);
+    }
+
+    public String toString(){
+        return getHands().toString();
     }
 }

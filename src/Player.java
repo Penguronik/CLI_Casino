@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Player {
 
-    private ArrayList<Hand> hands = new ArrayList<>(); //No reason for this to be private as hand already has the restrictions from the Hand class
+    private ArrayList<Hand> hands = new ArrayList<>();
 
     //constructor 1
     public Player(){
