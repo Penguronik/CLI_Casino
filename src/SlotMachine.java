@@ -25,9 +25,7 @@ public class SlotMachine {
         return this.results[0].equals("诺姆") && this.results[1].equals("诺姆") && this.results[3].equals("诺姆");
     }
 
-    public static void playSlots() {
-
-        User user = new User(1000000);
+    public static void playSlots(User user) {
 
         Scanner sc = new Scanner(System.in);
 
