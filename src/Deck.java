@@ -32,6 +32,19 @@ public class Deck {
         }
     }
 
+    public Deck(String cardType, boolean shuffle, int numberOfDecks) throws InvalidCardValueException {
+        for (int k = 0; k < numberOfDecks; k++) {
+            for (int i = 1; i < 14; i++) {
+                for (int j = 0; j < 4; j++) {
+                    deck.add(new PlayingCard(i, j, cardType));
+                }
+            }
+        }
+        if (shuffle) {
+            this.shuffle();
+        }
+    }
+
     public Stack<PlayingCard> getDeck() {
         return this.deck;
     }
