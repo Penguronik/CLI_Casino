@@ -1,22 +1,45 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Blackjack {
-    public Blackjack(User user) {
+    public static void playBlackjack(User user) {
         Deck playingDeck = new Deck("bj");
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
-        boolean mainLoop, actionLoop = true, canSplit, canDouble, dealerBust = false;
+        boolean mainLoop, actionLoop = true, canSplit, canDouble, dealerBust = false, invalid;
         int handNum;
-        //ADD ERROR HANDLING IF INPUTS ARE NEVER TURNED INTO VISUAL
+        String input;
         //1
+        System.out.println("Welcome to Blackjack!");
+        do{
+            System.out.print("How many decks would you like to play with?: ");
+            try {
+                playingDeck = new Deck("bj", sc.nextInt());
+                invalid = false;
+            }catch (Exception e){
+                System.out.println("Invalid input");
+                invalid = true;
+            }
+            sc = new Scanner(System.in);
+        }while(invalid);
+
+        System.out.println("You are playing with " + playingDeck.getDeck().size() + " cards");
+
         do {
             user.createHand();
             dealer.createHand();
             handNum = 0;
             System.out.println("Your balance is: " + user.getBalance());
-            System.out.print("Enter your bet: ");
-            user.setBet(sc.nextDouble());
+            do{
+                System.out.print("Enter your bet: ");
+                try {
+                    user.setBet(sc.nextDouble());
+                    invalid = false;
+                } catch (Error e) {
+                    System.out.println("Invalid input");
+                    invalid = true;
+                }
+                sc = new Scanner(System.in);
+            }while(invalid);
             sc.nextLine();//This line is here to fix the glitch with scanner
 
             //2
@@ -41,8 +64,11 @@ public class Blackjack {
             do {
                 System.out.println("\n" + "Dealer Cards: " + dealer.getHand());
                 System.out.println("User Cards: " + user + "\n");
-                actionLoop:
-                while (actionLoop) {
+                actionLoop: while (actionLoop) {
+                    if (playingDeck.getDeck().size() < 20){
+                        System.out.println("Few cards left in deck, resetting deck.");
+                        playingDeck.resetDeck("bj");
+                    }
                     System.out.println("You're On Hand #" + handNum);
                     canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2 * user.getBet(handNum));
                     canDouble = (user.getBalance() >= 2 * user.getBet(handNum)) && (user.getHand(handNum).getArray().size() == 2);
@@ -73,7 +99,7 @@ public class Blackjack {
                     System.out.println("Player Cards: " + user + "\n");
 
                     if (user.checkBust(handNum)) {
-                        break;
+                        actionLoop = false;
                     }
                 }//End of actionLoop
 
@@ -126,8 +152,12 @@ public class Blackjack {
             dealer.clearHands();
             dealerBust = false;
             System.out.println("Your final balance is: " + user.getBalance());
-            System.out.print("Type \"Q\" to quit and anything else to keep playing: ");
-            mainLoop = !sc.nextLine().equals("Q");
+            System.out.print("Type \"Q\" to quit, slots to go to the Slot Machine, and anything else to keep playing: ");
+            input = sc.nextLine();
+            mainLoop = !input.equals("Q");
+            if (input.equals("slots")) {
+                SlotMachine.playSlots(user);
+            }
         } while (mainLoop);
     }
 }

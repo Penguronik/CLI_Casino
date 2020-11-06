@@ -21,24 +21,50 @@ public class Deck {
         this.shuffle();
     }
     // makes the deck and shuffles it
-    public Deck(String cardType, boolean shuffle) throws InvalidCardValueException {
-        for (int i = 1; i < 14; i++) {
-            for (int j = 0; j < 4; j++) {
-                deck.add(new PlayingCard(i, j, cardType));
+    public Deck(String cardType, boolean shuffle) {
+        try {
+            for (int i = 1; i < 14; i++) {
+                for (int j = 0; j < 4; j++) {
+                    deck.add(new PlayingCard(i, j, cardType));
+                }
             }
+        }catch (InvalidCardValueException e){
+            clearDeck();
+            System.out.println("Exception " + e);
         }
         if (shuffle) {
             this.shuffle();
         }
     }
 
-    public Deck(String cardType, boolean shuffle, int numberOfDecks) throws InvalidCardValueException {
-        for (int k = 0; k < numberOfDecks; k++) {
-            for (int i = 1; i < 14; i++) {
-                for (int j = 0; j < 4; j++) {
-                    deck.add(new PlayingCard(i, j, cardType));
+    public Deck(String cardType, int numberOfDecks) {
+        try {
+            for (int k = 0; k < numberOfDecks; k++) {
+                for (int i = 1; i < 14; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        deck.add(new PlayingCard(i, j, cardType));
+                    }
                 }
             }
+        }catch (InvalidCardValueException e){
+            clearDeck();
+            System.out.println("Exception " + e);
+        }
+        this.shuffle();
+    }
+
+    public Deck(String cardType, boolean shuffle, int numberOfDecks) {
+        try {
+            for (int k = 0; k < numberOfDecks; k++) {
+                for (int i = 1; i < 14; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        deck.add(new PlayingCard(i, j, cardType));
+                    }
+                }
+            }
+        }catch (InvalidCardValueException e){
+            clearDeck();
+            System.out.println("Exception " + e);
         }
         if (shuffle) {
             this.shuffle();
