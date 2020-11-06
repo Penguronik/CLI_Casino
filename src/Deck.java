@@ -67,4 +67,19 @@ public class Deck {
     public String toString(){
         return deck.toString();
     }
+
+    public void resetDeck(String cardType) {
+        this.clearDeck();
+        try {
+            for (int i = 1; i < 14; i++) {
+                for (int j = 0; j < 4; j++) {
+                    deck.add(new PlayingCard(i, j, cardType));
+                }
+            }
+        }catch (InvalidCardValueException e){
+            clearDeck();
+            System.out.println("Exception " + e);
+        }
+        this.shuffle();
+    }
 }
