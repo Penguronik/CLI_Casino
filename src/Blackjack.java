@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BlackJack {
-    public static void main(String[] args) throws InvalidCardValueException {
+public class Blackjack {
+    public Blackjack(User user) {
         Deck playingDeck = new Deck("bj");
-        User user = new User(100);
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
         boolean mainLoop, actionLoop = true, canSplit, canDouble, dealerBust = false;

@@ -3,6 +3,9 @@ public class User extends Player{
     private double balance;
 
     //constructor 1
+    public User(){
+    }
+
     public User(double balance){
         this.setBalance(balance);
     }
