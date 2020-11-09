@@ -20,7 +20,7 @@ public class Casino {
             sc = new Scanner(System.in);
         }while(invalid);
 
-        System.out.println("You will be starting with a balance of: " + user.getBalance() + "\n What would you like to play?");
+        System.out.println("You will be starting with a balance of: " + user.getBalance() + "\nWhat would you like to play?");
         do {
             System.out.print("Enter 'bj' for Blackjack and 'slots' for the Slot Machine: ");
             gamemode = sc.nextLine();
