@@ -1,5 +1,7 @@
 /*
-Author: Roni Kant
+Author: Roni Kant, Tomer Lapid
+        - Roni worked on the game-flow
+        - Tomer created the win conditions
 Date: Monday, November 9, 2020
 Purpose: Combines all the classes and methods we made in order to play the full game of blackjack.
  */
