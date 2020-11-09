@@ -5,6 +5,8 @@ public class SlotMachine {
 
     String[] results = new String[3];
 
+    // constructor
+    // creates the roll
     public SlotMachine() {
         String[] symbols = {"7", "诺姆", "♠", "$", "£", "♣", "♦", "❤", "€"};
 
@@ -13,18 +15,22 @@ public class SlotMachine {
         this.results[2] = symbols[(int) (Math.random()*(9))];
     }
 
+    // returns the symbols rolled
     public String[] getResults() {
         return this.results;
     }
 
+    // checks if the roll won
     public boolean winCheck() {
         return this.results[0].equals(this.results[1]) && this.results[0].equals(this.results[2]);
     }
 
+    // checks if hanji should be played
     public boolean hanjiCheck() {
         return this.results[0].equals("诺姆") && this.results[1].equals("诺姆") && this.results[3].equals("诺姆");
     }
 
+    // playing the slot machine
     public static void playSlots(User user) {
 
         Scanner sc = new Scanner(System.in);
@@ -33,17 +39,28 @@ public class SlotMachine {
         double bet = 0;
         boolean invalidBet;
 
+        System.out.println("How much would you like to bet? (enter Q to quit)");
         betStr = sc.nextLine();
 
         // getting the users bet
         do {
             try {
+                // see if slots should be quit
+                if (betStr.equals("Q")) {
+                    return;
+                }
                 bet = Double.parseDouble(betStr);
                 invalidBet = bet < 0 || bet > user.getBalance();
             } catch (NumberFormatException e) {
                 invalidBet = true;
+                System.out.println("That is an invalid bet!");
+                System.out.println("Please try again!");
+                System.out.println();
             }
+
         } while (invalidBet);
+
+        System.out.println();
 
         System.out.println("You bet " + bet + "$");
 
@@ -51,34 +68,27 @@ public class SlotMachine {
         int multiplier;
         if (bet < 100) {
             multiplier = 4;
-            System.out.println("Win multiplier: " + multiplier);
-            System.out.println();
         }
         else if (bet < 1000) {
             multiplier = 5;
-            System.out.println("Win multiplier: " + multiplier);
-            System.out.println();
         }
         else if (bet < 5000) {
             multiplier = 8;
-            System.out.println("Win multiplier: " + multiplier);
-            System.out.println();
         }
         else if (bet < 12500) {
             multiplier = 10;
-            System.out.println("Win multiplier: " + multiplier);
-            System.out.println();
         }
         else {
             multiplier = 12;
-            System.out.println("Win multiplier: " + multiplier);
-            System.out.println();
         }
+
+        // tell the user how much their bet will be multiplies by
+        System.out.println("If you win, you will receive " + multiplier + "x your bet!");
 
         // initialize the SlotMachine
         SlotMachine sm  = new SlotMachine();
 
-        // print the machine
+        // print the users roll
         for (int i = 0; i < sm.getResults().length; i++) {
             System.out.print(sm.getResults()[i] + " ");
         }

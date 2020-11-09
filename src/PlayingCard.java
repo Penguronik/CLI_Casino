@@ -17,6 +17,7 @@ public class PlayingCard implements Comparable<PlayingCard> {
                 throw new InvalidCardValueException();
             }
             else {
+                // in case the value is a J, Q, K, A
                 switch (v) {
                     case (1):
                         this.cardValueString = "A";
@@ -46,6 +47,7 @@ public class PlayingCard implements Comparable<PlayingCard> {
                 throw new InvalidCardValueException();
             }
             else {
+                // sets the suit
                 switch (s) {
                     case (3):
                         this.suitSymbol = "♠";
@@ -77,10 +79,13 @@ public class PlayingCard implements Comparable<PlayingCard> {
         return this.cardValue;
     }
 
+    // returns the value assigned to the specific suit
     public int getSuitValue(){return this.suitValue;}
 
+    // returns the symbol of the suit
     public String getSuitSymbol() { return this.suitSymbol; }
 
+    // returns the card in string form
     public String toString() {
         if(show){
             return cardValueString + suitSymbol;
@@ -95,6 +100,7 @@ public class PlayingCard implements Comparable<PlayingCard> {
         return this;
     }
 
+    // sets the value of the card
     public void setCardValue(int v) {
         this.cardValue = v;
     }
