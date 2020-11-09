@@ -1,3 +1,9 @@
+/*
+Author:
+Date: Monday, November 9, 2020
+Purpose:
+ */
+
 public class User extends Player{
 
     private double balance;

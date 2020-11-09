@@ -1,3 +1,9 @@
+/*
+Author:
+Date: Monday, November 9, 2020
+Purpose:
+ */
+
 public class PlayingCard implements Comparable<PlayingCard> {
 
     private int cardValue;

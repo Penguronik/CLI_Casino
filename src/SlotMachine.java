@@ -1,4 +1,9 @@
-import java.util.Random;
+/*
+Author:
+Date: Monday, November 9, 2020
+Purpose:
+ */
+
 import java.util.Scanner;
 
 public class SlotMachine {
