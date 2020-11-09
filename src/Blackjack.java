@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Blackjack {
     public static void playBlackjack(User user) {
+        //Initializing variables
         Deck playingDeck = new Deck("bj");
         Dealer dealer = new Dealer();
         Scanner sc = new Scanner(System.in);
@@ -54,36 +55,46 @@ public class Blackjack {
                 user.getHand(handNum).setNBJ(true);
             }
 
-            //
+            //While loop that iterates through the player's hands (in case they split)
+            //This is a while loop instead of a for loop as java has issues when you add to an array while you are iterating through it with a for loop
             do {
                 System.out.println("\n" + "Dealer Cards: " + dealer.getHand());
                 System.out.println("User Cards: " + user + "\n");
+                //The loop that each hand goes through to decide and perform the user's actions
                 actionLoop: while (actionLoop) {
+                    //Ensures that the deck doesn't run out of cards
                     if (playingDeck.getDeck().size() < 20){
                         System.out.println("Few cards left in deck, resetting deck.");
                         playingDeck.resetDeck("bj");
                     }
                     System.out.println("You're On Hand #" + (handNum + 1));
+                    //Decides if user is able to split or double
                     canSplit = (user.getHand(handNum).splittable()) && (user.getBalance() >= 2 * user.getBet(handNum));
                     canDouble = (user.getBalance() >= 2 * user.getBet(handNum)) && (user.getHand(handNum).getArray().size() == 2);
+                    //Asks user for their action and performs it if the user has the option
                     System.out.println("Pick one of: " + (canSplit ? "split, " : "") + (canDouble ? "double, " : "") + "stand, " + "hit");
                     switch (sc.nextLine()) {
+                        //Split action
                         case "split":
                             if (canSplit) {
                                 user.split(handNum, playingDeck);
                                 break;
                             }
+                        //Stand action
                         case "stand":
                             break actionLoop;
+                        //Hit action
                         case "hit":
                             user.drawCard(playingDeck, handNum, true);
                             break;
+                        //Double action
                         case "double":
                             if (canDouble) {
                                 user.drawCard(playingDeck, handNum, true);
                                 user.addBet(user.getBet(handNum), handNum);
                                 break actionLoop;
                             }
+                        //It goes here if the user inputs a wrong input
                         default:
                             System.out.println("Wrong input");
 
@@ -92,6 +103,7 @@ public class Blackjack {
                     System.out.println("Dealer Cards: " + dealer.getHand());
                     System.out.println("Player Cards: " + user + "\n");
 
+                    //Breaks out of loop if user busted
                     if (user.checkBust(handNum)) {
                         actionLoop = false;
                     }
@@ -100,10 +112,11 @@ public class Blackjack {
                 user.getHand(handNum).setBust(user.checkBust(handNum));
 
                 handNum++;
-            } while (handNum < user.getHands().size());
+            } while (handNum < user.getHands().size()); //End of while loop
 
             handNum = 0;
 
+            //While loop to iterate through each player hand and see if it wins or loses
             do {
                 dealer.showAll();
                 System.out.println("Dealer Cards: " + dealer.getHand());
@@ -115,6 +128,7 @@ public class Blackjack {
                     System.out.println("Hand #" + (handNum + 1) + " Busted!");
                     user.lost(handNum);
                 } else {
+                    //Draws cards for dealer until dealer has minimum of 17
                     while (dealer.shouldHit()) {
                         dealer.drawCard(playingDeck, true);
                         System.out.println("Dealer Cards: " + dealer.getHand());
@@ -125,6 +139,7 @@ public class Blackjack {
                             user.won(handNum);
                         }
                     }
+                    //Win and loss checks
                     if (!dealerBust) {
                         if (dealer.getHand().getTotal() > user.getHand(handNum).getTotal()) {
                             System.out.println("Hand #" + (handNum + 1) + " Lost!");
@@ -141,10 +156,12 @@ public class Blackjack {
                 user.getHand(handNum).setNBJ(false);
                 user.getHand(handNum).setBust(false);
                 handNum++;
-            } while (handNum < user.getHands().size());
+            } while (handNum < user.getHands().size()); //End of while loop
+            //Clearing user and dealer hands
             user.clearHands();
             dealer.clearHands();
             dealerBust = false;
+            //Outputting results and asking user what they want to do next
             System.out.println("Your final balance is: " + user.getBalance());
             System.out.print("Type \"Q\" to quit, slots to go to the Slot Machine, and anything else to keep playing: ");
             input = sc.nextLine();
@@ -152,6 +169,6 @@ public class Blackjack {
             if (input.equals("slots")) {
                 SlotMachine.playSlots(user);
             }
-        } while (mainLoop);
+        } while (mainLoop); //End of mainLoop
     }
 }

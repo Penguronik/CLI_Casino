@@ -6,12 +6,13 @@ public class User extends Player{
     public User(){
     }
 
+    //constructor 2
     public User(double balance){
         this.setBalance(balance);
     }
 
 
-    //getters
+    //Get methods
     public double getBalance(){
         return this.balance;
     }
@@ -20,7 +21,11 @@ public class User extends Player{
 
     public double getBet(int handNum){return this.getHand(handNum).getBet();}
 
-    //setters
+    public String toString(){
+        return getHands().toString();
+    }
+
+    //Set methods
     public void setBalance(double balance) {
         if (balance > 0) {
             this.balance = balance;
@@ -52,6 +57,7 @@ public class User extends Player{
         }
     }
 
+    //Action methods
     public void addBet(double bet, int handNum){
         if (bet < 0) {
             throw new IllegalArgumentException("Bet can't be negative");
@@ -71,6 +77,7 @@ public class User extends Player{
         drawCard(deck, getHands().size()-1, true);
     }
 
+    //Win condition methods
     public void lost(int handNum){
         getHand(handNum).setBet(0);
     }
@@ -92,9 +99,5 @@ public class User extends Player{
             balance += 2 * getHand(handNum).getBet();
         }
         getHand(handNum).setBet(0);
-    }
-
-    public String toString(){
-        return getHands().toString();
     }
 }
