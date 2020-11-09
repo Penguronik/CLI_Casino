@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Roni Kant
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: Combines all the classes and methods we made in order to play the full game of blackjack.
  */
 
 import java.util.Scanner;

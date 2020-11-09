@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Roni Kant
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: To have a user that can have money to move between blackjack and the slot machines
  */
 
 public class User extends Player{

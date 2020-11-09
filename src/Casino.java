@@ -1,7 +1,8 @@
 /*
-Author:
+Author: Tomer Lapid
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: The main menu of our casino where the player can choose whether they want to play blackjack
+         or Noam's Slot-Mania!™
  */
 
 import java.util.Scanner;

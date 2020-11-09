@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Tomer Lapid
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: A class that contains the cards a player has in their hand
  */
 
 import java.util.ArrayList;

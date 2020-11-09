@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Noam Borenstein
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: To create a deck of cards in order to be used for blackjack
  */
 
 import java.util.ArrayList;

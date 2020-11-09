@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Roni Kant
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: Has functions that can be performed on a player who has a hand
  */
 
 import java.util.ArrayList;

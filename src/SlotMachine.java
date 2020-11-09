@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Noam Borenstein
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: To create a slot machine and play the slot machine
  */
 
 import java.util.Scanner;

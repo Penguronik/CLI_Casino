@@ -1,7 +1,7 @@
 /*
-Author:
+Author: Roni Kant
 Date: Monday, November 9, 2020
-Purpose:
+Purpose: Create the dealer class which extends player in order to implement the dealer's game-logic
  */
 
 public class Dealer extends Player{
