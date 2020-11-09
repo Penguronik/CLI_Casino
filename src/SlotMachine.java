@@ -33,6 +33,8 @@ public class SlotMachine {
     // playing the slot machine
     public static void playSlots(User user) {
 
+        System.out.println("Welcome to Noam's Slot-Mania");
+
         Scanner sc = new Scanner(System.in);
 
         String betStr;

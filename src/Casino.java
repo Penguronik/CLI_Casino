@@ -2,10 +2,13 @@ import java.util.Scanner;
 
 public class Casino {
     public static void main(String[] args) {
+        //Initializing variables
         boolean invalid;
+        String gamemode;
         User user = new User();
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Casino Simulator by Noam Borenstein, Roni Kant, and Tomer Lapid");
+        //Gets user balance
         do {
             System.out.print("Please enter the balance you'd like to start with: ");
             try {
@@ -15,16 +18,19 @@ public class Casino {
                 System.out.println("Invalid input");
                 invalid = true;
             }
+            sc = new Scanner(System.in);
         }while(invalid);
 
-        System.out.println("You will be starting with a balance of: " + user.getBalance() + "\n What would you like to play?");
+        System.out.println("You will be starting with a balance of: " + user.getBalance() + "\nWhat would you like to play?");
+        //Sends user to game they want to play
         do {
             System.out.print("Enter 'bj' for Blackjack and 'slots' for the Slot Machine: ");
-            if (sc.nextLine().equals("bj")) {
-                new Blackjack(user);
+            gamemode = sc.nextLine();
+            if (gamemode.equals("bj")) {
+                Blackjack.playBlackjack(user);
                 invalid = false;
-            } else if (sc.nextLine().equals("slots")) {
-                new SlotMachine();
+            } else if (gamemode.equals("slots")) {
+                SlotMachine.playSlots(user);
                 invalid = false;
             } else {
                 System.out.println("Invalid input");

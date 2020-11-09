@@ -1,19 +1,14 @@
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 public class Player {
 
     private ArrayList<Hand> hands = new ArrayList<>();
 
-    //constructor 1
+    //constructor
     public Player(){
     }
 
-    //getters
-    public void createHand(){
-        hands.add(new Hand());
-    }
-
+    //Get methods
     public Hand getHand(){
         return this.hands.get(0);
     }
@@ -24,7 +19,18 @@ public class Player {
 
     public ArrayList<Hand> getHands(){return this.hands;}
 
-    //setters
+    public boolean checkBust(){
+        return getHand().checkBust();
+    }
+
+    public boolean checkBust(int handNum){
+        return getHand(handNum).checkBust();
+    }
+
+    //Set methods
+    public void createHand(){
+        hands.add(new Hand());
+    }
 
     public void setHand(Hand hand){
         this.hands.set(0, hand);
@@ -46,37 +52,26 @@ public class Player {
         this.hands.remove(handNum);
     }
 
-    //
-
-    public void drawCard(Deck deck){
-        hands.get(0).drawCard(deck);
-        //Draw a card from the deck
-    }
-    public void drawCard(Deck deck, int handNum){
-        hands.get(handNum).drawCard(deck);
-        //Draw a card from the deck
-    }
-
-    public void drawCard(Deck deck, boolean show){
-        hands.get(0).drawCard(deck,show);
-        //Draw a card from the deck
-    }
-    public void drawCard(Deck deck, int handNum, boolean show){
-        hands.get(handNum).drawCard(deck,show);
-        //Draw a card from the deck
-    }
-
-    public boolean checkBust(){
-        return getHand().checkBust();
-    }
-
-    public boolean checkBust(int handNum){
-        return getHand(handNum).checkBust();
-    }
-
     public void showAll(){
         for(Hand i: getHands()){
             i.showAll();
         }
+    }
+
+    //Action methods
+    public void drawCard(Deck deck){
+        hands.get(0).drawCard(deck);
+    }
+
+    public void drawCard(Deck deck, int handNum){
+        hands.get(handNum).drawCard(deck);
+    }
+
+    public void drawCard(Deck deck, boolean show){
+        hands.get(0).drawCard(deck,show);
+    }
+
+    public void drawCard(Deck deck, int handNum, boolean show){
+        hands.get(handNum).drawCard(deck,show);
     }
 }

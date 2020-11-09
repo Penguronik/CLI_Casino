@@ -2,20 +2,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Hand {
-
     private ArrayList<PlayingCard> hand = new ArrayList<>();
     private double bet;
     private boolean naturalBlackJack = false;
     private boolean bust = false;
 
+    //constructor 1
     public Hand(){
-
     }
 
+    //constructor 2
     public Hand(PlayingCard card){
         hand.add(card);
     }
 
+    //Action methods
     public void addCard(PlayingCard card) {
         hand.add(card);
     }
@@ -26,16 +27,13 @@ public class Hand {
 
     public void drawCard(Deck deck){
         addCard(deck.drawCard());
-        //Use addCard()
-        //Draw one card from deck
     }
 
     public void drawCard(Deck deck, boolean show){
         addCard(deck.drawCard().setShow(show));
-        //Use addCard()
-        //Draw one card from deck
     }
 
+    //Get methods
     public int getTotal(){
         int total = 0;
         for (PlayingCard card : hand){
@@ -65,6 +63,10 @@ public class Hand {
 
     public boolean getNBJ(){return naturalBlackJack;}
 
+    public boolean getBust() {
+        return bust;
+    }
+
     public boolean contains(int v) {
         for (PlayingCard card: hand){
             if(card.getCardValue() == v){
@@ -83,20 +85,18 @@ public class Hand {
     }
 
     public boolean splittable(){
-        if((hand.size() ==2) && (hand.get(0).getCardValue()==hand.get(1).getCardValue())){
-            return true;
-        } else{
-            return false;
-        }
+        return (hand.size() == 2) && (hand.get(0).getCardValue() == hand.get(1).getCardValue());
     }
 
     public boolean checkBust() {
-        if (this.getTotal()>21){
-            return true;
-        }
-        return false;
+        return this.getTotal() > 21;
     }
 
+    public String toString(){
+        return Arrays.toString(hand.toArray());
+    }
+
+    //Set methods
     public void setNBJ(boolean b){
         naturalBlackJack = b;
     }
@@ -117,10 +117,6 @@ public class Hand {
         }
     }
 
-    public String toString(){
-        return Arrays.toString(hand.toArray());
-    }
-
     public void showAll() {
         for (PlayingCard card:hand) {
             card.setShow(true);
@@ -131,7 +127,4 @@ public class Hand {
         bust = b;
     }
 
-    public boolean getBust() {
-        return bust;
-    }
 }
