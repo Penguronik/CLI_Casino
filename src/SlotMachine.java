@@ -32,7 +32,7 @@ public class SlotMachine {
 
     // checks if hanji should be played
     public boolean hanjiCheck() {
-        return this.results[0].equals("诺姆") && this.results[1].equals("诺姆") && this.results[3].equals("诺姆");
+        return this.results[0].equals("诺姆") && this.results[1].equals("诺姆") && this.results[2].equals("诺姆");
     }
 
     // playing the slot machine
