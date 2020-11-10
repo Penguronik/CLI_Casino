@@ -4,9 +4,7 @@ Date: Monday, November 9, 2020
 Purpose: To create a slot machine and play the slot machine
  */
 
-import java.awt.*;
 import java.util.Scanner;
-import javax.swing.*;
 
 
 public class SlotMachine {
@@ -34,14 +32,15 @@ public class SlotMachine {
         return this.results[0].equals(this.results[1]) && this.results[0].equals(this.results[2]);
     }
 
-    // checks if hanji should be played
-    public boolean hanjiCheck() {
+    // checks if the Noam jackpot was won
+    public boolean noamCheck() {
         return this.results[0].equals("诺姆") && this.results[1].equals("诺姆") && this.results[2].equals("诺姆");
     }
 
     // playing the slot machine
     public static void playSlots(User user) {
 
+        System.out.println();
         System.out.println("Welcome to Noam's Slot-Mania!");
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
@@ -111,6 +110,13 @@ public class SlotMachine {
         System.out.println();
         System.out.println();
 
+        if (sm.noamCheck()) {
+            System.out.println("You got the Noam jackpot!");
+            multiplier += 1;
+            System.out.println("Your payout is now " + multiplier + "x!");
+            System.out.println();
+        }
+
         // add winnings or subtract loss and tell the player if they won
         if (sm.winCheck()) {
             System.out.println("You win!");
@@ -124,7 +130,7 @@ public class SlotMachine {
             user.setBalance(user.getBalance() - bet);
         }
 
-        if (sm.hanjiCheck()) {
+        if (sm.noamCheck()) {
 
             System.out.println("                                                                                                    \n" +
                     "                                             ...,.....      .. ...                                  \n" +
