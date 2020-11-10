@@ -14,7 +14,7 @@ public class SlotMachine {
     // constructor
     // creates the roll
     public SlotMachine() {
-        String[] symbols = {"7", "诺姆", "♠", "$", "£", "♣", "♦", "❤", "€"};
+        String[] symbols = {"7", "₦", "♠", "$", "£", "♣", "♦", "❤", "€"};
 
         this.results[0] = symbols[(int) (Math.random()*(9))];
         this.results[1] = symbols[(int) (Math.random()*(9))];
@@ -34,7 +34,7 @@ public class SlotMachine {
 
     // checks if the Noam jackpot was won
     public boolean noamCheck() {
-        return this.results[0].equals("诺姆") && this.results[1].equals("诺姆") && this.results[2].equals("诺姆");
+        return this.results[0].equals("₦") && this.results[1].equals("₦") && this.results[2].equals("₦");
     }
 
     // playing the slot machine
