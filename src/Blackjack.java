@@ -45,7 +45,7 @@ public class Blackjack {
                 try {
                     user.setBet(sc.nextDouble());
                     invalid = false;
-                } catch (Error e) {
+                } catch (Exception e) {
                     System.out.println("Invalid input");
                     invalid = true;
                 }
@@ -172,9 +172,9 @@ public class Blackjack {
             //Outputting results and asking user what they want to do next
             System.out.println("Your final balance is: " + user.getBalance());
             System.out.print("Type \"Q\" to quit, slots to go to the Slot Machine, and anything else to keep playing: ");
-            input = sc.nextLine();
+            input = sc.nextLine().toUpperCase();
             mainLoop = !input.equals("Q");
-            if (input.equals("slots")) {
+            if (input.equals("SLOTS")) {
                 SlotMachine.playSlots(user);
             }
         } while (mainLoop); //End of mainLoop
