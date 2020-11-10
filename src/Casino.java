@@ -18,7 +18,7 @@ public class Casino {
         System.out.println("\nWelcome to Casino Simulator by Noam Borenstein, Roni Kant, and Tomer Lapid");
         //Gets user balance
         do {
-            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
             System.out.print("Please enter the balance you'd like to start with: ");
             try {
                 user.setBalance(sc.nextDouble());
