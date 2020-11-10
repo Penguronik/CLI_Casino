@@ -18,6 +18,7 @@ public class SlotMachine {
         this.results[0] = symbols[(int) (Math.random()*(9))];
         this.results[1] = symbols[(int) (Math.random()*(9))];
         this.results[2] = symbols[(int) (Math.random()*(9))];
+
     }
 
     // returns the symbols rolled
