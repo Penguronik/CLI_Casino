@@ -18,7 +18,7 @@ public class Blackjack {
         int handNum;
         String input;
         //Getting user inputs to initialize the game
-        System.out.println("Welcome to Blackjack!");
+        System.out.println("\nWelcome to Blackjack!");
         do{
             System.out.print("How many decks would you like to play with?: ");
             try {

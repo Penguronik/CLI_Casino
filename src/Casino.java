@@ -8,15 +8,17 @@ Purpose: The main menu of our casino where the player can choose whether they wa
 import java.util.Scanner;
 
 public class Casino {
+
     public static void main(String[] args) {
         //Initializing variables
         boolean invalid;
         String gamemode;
         User user = new User();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Welcome to Casino Simulator by Noam Borenstein, Roni Kant, and Tomer Lapid");
+        System.out.println("\nWelcome to Casino Simulator by Noam Borenstein, Roni Kant, and Tomer Lapid");
         //Gets user balance
         do {
+            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
             System.out.print("Please enter the balance you'd like to start with: ");
             try {
                 user.setBalance(sc.nextDouble());
@@ -28,7 +30,7 @@ public class Casino {
             sc = new Scanner(System.in);
         }while(invalid);
 
-        System.out.println("You will be starting with a balance of: " + user.getBalance() + "\nWhat would you like to play?");
+        System.out.println("\nYou will be starting with a balance of: $" + user.getBalance() + "\n\nWhat would you like to play?");
         //Sends user to game they want to play
         do {
             System.out.print("Enter 'bj' for Blackjack and 'slots' for the Slot Machine: ");
