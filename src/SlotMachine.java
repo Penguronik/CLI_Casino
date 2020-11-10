@@ -39,6 +39,7 @@ public class SlotMachine {
     public static void playSlots(User user) {
 
         System.out.println("Welcome to Noam's Slot-Mania!");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
         Scanner sc = new Scanner(System.in);
 
@@ -46,20 +47,23 @@ public class SlotMachine {
         double bet = 0;
         boolean invalidBet;
 
-        System.out.println("How much would you like to bet? (enter Q to quit)");
-        betStr = sc.nextLine();
-
         // getting the users bet
         do {
+            System.out.println("How much would you like to bet? (enter Q to quit)");
+            betStr = sc.nextLine();
+
             try {
                 // see if slots should be quit
-                if (betStr.equals("Q")) {
+                if (betStr.toUpperCase().equals("Q")) {
                     return;
                 }
                 bet = Double.parseDouble(betStr);
                 invalidBet = bet < 0 || bet > user.getBalance();
             } catch (NumberFormatException e) {
                 invalidBet = true;
+            }
+
+            if (invalidBet) {
                 System.out.println("That is an invalid bet!");
                 System.out.println("Please try again!");
                 System.out.println();
@@ -92,14 +96,19 @@ public class SlotMachine {
         // tell the user how much their bet will be multiplies by
         System.out.println("If you win, you will receive " + multiplier + "x your bet!");
 
+        System.out.println();
+
         // initialize the SlotMachine
         SlotMachine sm  = new SlotMachine();
+
+        System.out.println("You got:");
 
         // print the users roll
         for (int i = 0; i < sm.getResults().length; i++) {
             System.out.print(sm.getResults()[i] + " ");
         }
 
+        System.out.println();
         System.out.println();
 
         // add winnings or subtract loss and tell the player if they won
@@ -117,7 +126,30 @@ public class SlotMachine {
         }
 
         if (sm.hanjiCheck()) {
-            System.out.println("Ching cheng hanji");
+            System.out.println("Ching Cheng Hanji");
+            System.out.println();
         }
+
+        String playAgain;
+
+        do {
+            System.out.println("Would you like to play again? Press Y for yes, N for no and BJ for blackjack!");
+            playAgain = sc.nextLine();
+            playAgain = playAgain.toUpperCase();
+            System.out.println();
+            switch (playAgain) {
+                case "Y":
+                    playSlots(user);
+                    break;
+                case "N":
+                    System.out.println();
+                    return;
+                case "BJ":
+                    Blackjack.playBlackjack(user);
+                    break;
+            }
+        } while (!playAgain.equals("Y") && !playAgain.equals("BJ"));
+
+        System.out.println();
     }
 }
