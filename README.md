@@ -1,4 +1,4 @@
-# CasinoFST
+# CLI Casino
 A CLI Java Casino game with Black Jack and Slots. Made collaboratively by @Penguronik, @BoNoam, and @PeterGriffinEpicCoder in 2020.
 
 ### Features:
